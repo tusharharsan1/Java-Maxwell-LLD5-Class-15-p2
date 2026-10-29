@@ -50,7 +50,7 @@ To achieve these requirements we need to do 4 things:
 ## Instructions
 1. There is one TODO note in each of these four files: `StockApplication.java` (`TODO 1`), `WarehouseClient.java` (`TODO 2`), `StockService.java` (`TODO 3`) and `ApiExceptionHandler.java` (`TODO 4`).
 2. Do not modify the other files (they are finished), the dependencies in `pom.xml` (Spring's retry is part of Spring Framework 7, so no extra library is needed), the names of the classes and methods, or the dependencies that are injected in the classes. Feel free to add new methods or imports if required.
-3. Start the application (`mvn spring-boot:run`, or run `StockApplication` in your IDE). It runs on port 8080. Then try these commands in a second terminal, and compare with the answers below. When all four tasks are finished, you should see this:
+3. Start the application (`mvn spring-boot:run`, or run `StockApplication` in your IDE). It runs on port 8080 (if that port is busy, stop the other application that uses it, for example the project from class). Then try these commands in a second terminal, and compare with the answers below. When all four tasks are finished, you should see this:
    ```
    $ curl localhost:8080/stock/A1
    {"sku":"A1","quantity":7}
@@ -65,7 +65,7 @@ To achieve these requirements we need to do 4 things:
    ...
    {"detail":"(your own words)","instance":"/stock/A1","status":503,"title":"Stock check unavailable"}
    ```
-   Look at the console of your application too. The pretend warehouse wrote **3 lines** for that one request (`pretend warehouse: A1 -> 503`): 1 first try and 2 retries. The answer came after a little less than half a second, because of the two waits (about 100 and about 300 milliseconds).
+   Look at the console of your application too. The pretend warehouse wrote **3 lines** for that one request (`pretend warehouse: A1 -> 503`): 1 first try and 2 retries. The answer came in less than a second, because of the two waits (about 100 and about 300 milliseconds, each changed a little by the jitter).
 
    Now the case that must **not** be retried:
    ```
